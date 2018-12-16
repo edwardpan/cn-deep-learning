@@ -133,13 +133,13 @@ def download_extract(database_name, data_path):
     DATASET_MNIST_NAME = 'mnist'
 
     if database_name == DATASET_CELEBA_NAME:
-        url = 'https://s3.cn-north-1.amazonaws.com.cn/static-documents/nd101/celeba.zip'
+        url = 'https://s3-us-west-1.amazonaws.com/udacity-dlnfd/datasets/celeba.zip'
         hash_code = '00d2c5bc6d35e252742224ab0c1e8fcb'
         extract_path = os.path.join(data_path, 'img_align_celeba')
         save_path = os.path.join(data_path, 'celeba.zip')
         extract_fn = _unzip
     elif database_name == DATASET_MNIST_NAME:
-        url = 'https://s3.cn-north-1.amazonaws.com.cn/static-documents/nd101/train-images-idx3-ubyte.gz'
+        url = 'http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz'
         hash_code = 'f68b3c2dcbeaaa9fbdd348bbdeb94873'
         extract_path = os.path.join(data_path, 'mnist')
         save_path = os.path.join(data_path, 'train-images-idx3-ubyte.gz')
