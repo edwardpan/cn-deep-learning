@@ -29,14 +29,26 @@ class Task():
     def get_reward(self):
         """Uses current pose of sim to return reward."""
 #         reward = 1.-.003*(abs(self.sim.pose[:3] - self.target_pos)).sum()
-        reward = np.tanh(1. - .003*(abs(self.sim.pose[:3] - self.target_pos))).sum()
+        reward = np.tanh(1. - .03*abs(self.sim.pose[:3] - self.target_pos) 
+                         - .03*abs(self.sim.pose[0] - self.target_pos[0])
+                         - .03*abs(self.sim.pose[1] - self.target_pos[1])
+                        ).sum()
+#         reward = np.tanh(1. - .003*abs(self.sim.pose[:3] - self.target_pos) 
+#                          + .003*self.sim.pose[2]
+#                          - .003*abs(self.sim.pose[0] - self.target_pos[0])
+#                          - .003*abs(self.sim.pose[1] - self.target_pos[1])
+#                         ).sum()
+#         reward = np.tanh(1. - .003*abs(self.sim.pose[:3] - self.target_pos) 
+#                          - .03*abs(self.sim.pose[0] - self.target_pos[0]) 
+#                          - .03*abs(self.sim.pose[1] - self.target_pos[1]) ).sum()
 #         reward = np.tanh(1. - .03*(abs(self.sim.pose[2] - self.target_pos[2])))
     
 #         reward = -min(abs(self.target_pos[2] - self.sim.pose[2]), 20.0)
-#         if self.sim.pose[2] >= self.target_pos[2]:
+        if self.sim.pose[2] >= self.target_pos[2]:
 #             reward += 10.0
-#             self.sim.done = True
-#         elif self.sim.time > self.sim.runtime:
+            self.sim.done = True
+#         el
+#         if abs(self.sim.pose[0] - self.target_pos[0]) >= 1 or abs(self.sim.pose[1] - self.target_pos[1]) >= 1:
 #             reward -= 10.0
 #             self.sim.done = True
             
